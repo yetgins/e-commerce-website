@@ -1,6 +1,6 @@
-## Amazon Clone
+## E-Commerce Website
 
-Fully Funqctioning E-Commerce Website with Stripe Payment Gateway.
+Fully Functioning E-Commerce Website with Stripe Payment Gateway.
 
 Live Website: https://e-commerce-c1b8d.firebaseapp.com/
 
