@@ -3,7 +3,7 @@ import { useStateValue } from "../../contexts/StateProvider";
 import Button from "../Button/Button";
 import "./ProductItem.css";
 
-const Product = ({ id, title, image, price, category }) => {
+const Product = ({ id, title, image, price, category,onShowDetail,product }) => {
   const [{ basket }, dispatch] = useStateValue();
   const addToBasket = () => {
     dispatch({
@@ -19,7 +19,9 @@ const Product = ({ id, title, image, price, category }) => {
   };
 
   return (
-    <div className="product">
+    <div className="product" onClick={() => {
+      onShowDetail && onShowDetail(product);
+    }}>
       <p>{title}</p>
       <h4>{category}</h4>
 
@@ -29,7 +31,9 @@ const Product = ({ id, title, image, price, category }) => {
       </p>
       <img src={image} alt={title} />
 
-      <Button text="Add to Basket" onClick={addToBasket} />
+      <Button text="Add to Basket" onClick={(event)=>{
+        event.stopPropagation();
+        addToBasket(product);}} />
     </div>
   );
 };

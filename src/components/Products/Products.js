@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ProductItem from "../Products/ProductItem";
 import ProductService from "../../services/ProductService";
-import FilteredProducts from "./FilteredProducts";
 
-const Products = ({ category, filteredProducts }) => {
+const Products = ({ category, filteredProducts,onShowDetail }) => {
   const [products, setProducts] = useState([]);
 
   console.log(category);
@@ -32,22 +31,39 @@ const Products = ({ category, filteredProducts }) => {
         console.log(err);
       });
   };
+
   console.log(products);
 
   return (
+    <>
+          
     <div className="products" data-testid="products">
-      {/*filteredProducts?  (
-         <FilteredProducts filteredProducts={filteredProducts}/>):*/
-           products.map((product) => (
+      {filteredProducts && filteredProducts.length >0 ?  ( filteredProducts.map((product,index) => (
             <ProductItem
+              key={index}
+              product={product}
               id={product.id}
               title={product.title}
               price={product.price}
               category={product.category}
               image={product.image}
+              onShowDetail={onShowDetail}
             />
-          ))}
+         ))):
+           (products.map((product,index) => (
+            <ProductItem
+              key={index}
+              product={product}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              category={product.category}
+              image={product.image}
+              onShowDetail={onShowDetail}
+            />
+          )))}
     </div>
+    </>
   );
 };
 
